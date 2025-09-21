@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: campus-mgmt-app
+    image: yourusername/hms:latest
+    ports:
+      - "7079:8080"
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    container_name: mongodb-db
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
